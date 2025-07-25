@@ -1,0 +1,13 @@
+{
+  "custom/music": {
+    "exec": "hyde-shell mediaplayer --player playerctld",
+    "format": "{}",
+    "rotate": 0,
+    "return-type": "json",
+    "on-click": "playerctl play-pause --player playerctld",
+    "on-click-middle": "playerctl stop --player playerctld",
+    "on-scroll-up": "hyde-shell volumecontrol -p playerctld i",
+    "on-scroll-down": "hyde-shell volumecontrol -p playerctld d",
+    "tooltip": true
+  }
+}

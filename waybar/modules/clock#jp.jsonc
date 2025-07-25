@@ -1,0 +1,8 @@
+{
+    "clock#jp": {
+        "format": "{:%T %Z \udb80\udced %d\u00b7%m\u00b7%y}",
+        "rotate": 0,
+        "interval": 1,
+        "timezone": "Asia/Tokyo"
+    }
+}
