@@ -1,0 +1,74 @@
+/* Variables */
+$font-family: "Noto Sans CJK JP";
+
+.music-widget {
+  border-radius: 10px;
+  padding: 10px;
+  font-family: $font-family;
+}
+
+.cover-art {
+  background-size: cover;
+  background-position: center;
+  min-width: 155px;
+  min-height: 125px;
+  border-radius: 5px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-right:20px ;
+  padding-bottom: 50px;
+  border: 1px solid;
+}
+
+.music-info {
+  margin-top: 20px;
+  padding: 5px 0;
+  margin-right: 10px;
+}
+
+.song-title {
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow: 0 0 1px;
+  margin-bottom: 5px;
+} 
+
+.artist {
+  font-size: 14px;
+  opacity: 0.70;
+  margin-bottom: 5px;
+}
+
+.position {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  margin-left: 5;
+  border: none;
+}
+
+.progress-bar trough {
+  border-radius: 10px;
+  min-height: 12px;
+  min-width: 300px;
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.4);
+}
+
+.progress-bar highlight {
+  border-radius: 10px;
+  box-shadow: 0 0 3px;
+}
+
+.cava-visualizer {
+  margin-left:  5;
+  font-family: "monospace";
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px;
+  margin-top: 25px;
+  text-shadow: 0 0 3px;
+}

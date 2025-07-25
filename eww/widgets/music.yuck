@@ -1,0 +1,66 @@
+;; --- Polls ---
+(defpoll song_title     :initial "No Music Playing"
+                        :interval "1s"
+"playerctl metadata --format '{{title}}' --ignore-player=firefox || echo 'No Music Playing'")
+
+(defpoll song_artist    :initial "Unknown Artist"
+                        :interval "1s"
+"playerctl metadata --format '{{artist}}' --ignore-player=firefox || echo 'Unknown Artist'")
+
+(defpoll player_status  :initial "Stopped"
+                        :interval "1s"
+"playerctl metadata --format '{{status}}' --ignore-player=firefox || echo 'Stopped'")
+
+;; Polling is still needed for things that change continuously, like position,
+;; but we can use longer, more efficient intervals.
+(defpoll song_length_s   :interval "2s"
+"playerctl metadata mpris:length --ignore-player=firefox | awk '{print $1 / 1000000}' || echo 1")
+
+(defpoll song_position_s    :interval "1s" "playerctl position --ignore-player=firefox || echo 0")
+
+(defpoll progress_percent   :interval "1s" "$HOME/.config/eww/scripts/music-progress.sh")
+
+
+(defpoll formatted_position :interval "1s" "playerctl metadata -f '{{duration(position)}} / {{duration(mpris:length)}}' --ignore-player=firefox || echo '0:00'")
+
+;; Cover art and volume can also be polled at a slower rate.
+(defpoll cover_art_path :interval "1s" "$HOME/.config/eww/scripts/get-cover.sh")
+
+;; Cava runs as a persistent listener, which is correct.
+(deflisten cava :initial "" "bash $HOME/.config/eww/scripts/cava.sh")
+
+;; --- Widget Definition ---
+
+(defwidget music-widget []
+  (box :class "music-widget" :orientation "h" :space-evenly false
+    (box :class "cover-art" :style "background-image: url('${cover_art_path}');")
+    (box :class "music-info" :orientation "v" :space-evenly false
+      (label :class "song-title" :text song_title)
+      (label :class "artist" :text song_artist)
+
+      (label :class "position" :text formatted_position)
+
+      (
+        progress :class "progress-bar" 
+              :value progress_percent
+      )
+
+      (label :class "cava-visualizer" :text cava)
+    )
+  )
+)
+
+
+;; --- Window Definition ---
+
+(defwindow music-widget
+  :monitor 0
+  :geometry (
+    geometry :x "5px" 
+             :y "5px" 
+             :width "550px" 
+             :height "120px"
+  )
+  :wm-ignore true
+  (music-widget)
+)
