@@ -3,8 +3,6 @@
         "exec":"$HOME/.config/eww/scripts/get-cover.sh",
         "size": 25,
         "interval": 1,
-        "on-click": "eww open music-widget --screen $(hyprctl activewindow -j | jq '.monitor')",
-        "on-click-right": "eww close music-widget"
-        // "on-click": "swayimg $HOME/.cache/album_art.jpg -c info.show=no -c general.position=750,40 -c general.overlay=no -c general.size=image"
+        "on-click": "$HOME/.config/eww/scripts/toggle-music-widget.sh"
     }
 }
